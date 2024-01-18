@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head(${sitetitle})}"></head>
+<body class="container">
+<div th:replace="~{fragments :: horizontal}"></div>
+<table class="table table-stripped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tr th:each="category : ${categories}" th:object="${category}">
+        <td th:text="${category.ID}"></td>
+        <td><a th:href="@{~/places(categoryID=${category.ID})}" th:text="${category.name}"></a></td>
+    </tr>
+</table>
+
+</body>
+</html>

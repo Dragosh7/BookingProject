@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head(${sitetitle})}"></head>
+<body class="container">
+<div class='dashboard'>
+    <div th:replace="~{fragments :: vertical}"></div>
+    <div class='dashboard-app'>
+        <div class='dashboard-content'>
+            <div class='container'>
+                <div class='card'>
+                    <div class='card-header'>
+                        <h1 th:text="${headertext}"></h1>
+                    </div>
+                    <div class='card-body'>
+                        <form enctype="multipart/form-data" method="post" th:action="@{~/admin/places/update}">
+                            <div class="row mb-3">
+                                <div class="form-group col-auto">
+                                    <label>Title:
+                                        <input class="form-control border border-info" th:field="${place.title}">
+                                    </label>
+                                    <p class="alert alert-danger" role="alert" th:errors="${place.title}"></p>
+                                </div>
+                                <div class="form-group col-auto">
+                                    <label>Owner:
+                                        <input class="form-control border border-info"
+                                               th:field="${place.placeDetails.owner}">
+                                    </label>
+                                    <p class="alert alert-danger" role="alert"
+                                       th:errors="${place.placeDetails.owner}"></p>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Published Date:
+                                    <input class="form-control border border-info"
+                                           th:field="${place.placeDetails.publishedDate}"
+                                           type="date">
+                                </label>
+                                <p class="alert alert-danger" role="alert"
+                                   th:errors="${place.placeDetails.publishedDate}"></p>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Category:
+                                    <select class="form-select border border-info" th:field="${place.placeCategory}">
+                                        <option th:each="placeCategory : ${placeCategories}"
+                                                th:text="${placeCategory.name}"
+                                                th:value="${placeCategory.ID}">
+                                        </option>
+                                    </select>
+                                </label>
+                                <p class="alert alert-danger" role="alert" th:errors="${place.placeCategory}"></p>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-auto">
+                                    <label>People:
+                                        <input class="form-control border border-info" min=0
+                                               th:field="${place.placeDetails.persons}"
+                                               type="number">
+                                    </label>
+                                    <p class="alert alert-danger" role="alert"
+                                       th:errors="${place.placeDetails.persons}"></p>
+                                </div>
+                                <div class="form-group col-auto">
+                                    <label>Price:
+                                        <input class="form-control border border-info" min=0
+                                               th:field="${place.placeDetails.price}"
+                                               type="number">
+                                    </label>
+                                    <p class="alert alert-danger" role="alert"
+                                       th:errors="${place.placeDetails.price}"></p>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-auto">
+                                    <label>Description:
+                                        <input class="form-control border border-info"
+                                               th:field="${place.placeDetails.description}">
+                                    </label>
+                                    <p class="alert alert-danger" role="alert"
+                                       th:errors="${place.placeDetails.description}"></p>
+                                </div>
+
+                                <div class="form-group col-auto">
+                                    <label>Image:
+                                        <input accept="image/*" class="form-control border border-info"
+                                               name="imageFile" type="file">
+                                    </label>
+
+                                </div>
+                            </div>
+                            <div class="row-cols-auto mb-3">
+                                <div class="form-group col-auto align-content-center">
+                                    <input class="btn btn-success border border-info" type="submit" value="Update">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

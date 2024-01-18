@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head(${sitetitle})}"></head>
+<body class="container">
+<header th:replace="~{fragments :: horizontal}"></header>
+<table class="table table-stripped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tr th:each="tag : ${tags}" th:object="${tag}">
+        <td th:text="${tag.ID}"></td>
+        <td>
+            <a th:text="${tag.name}" th:href="@{~/places(placeTagID=${tag.ID})}"></a>
+        </td>
+
+    </tr>
+</table>
+</body>
+</html>
